@@ -8,7 +8,7 @@
 </ol>
 <h3>Optional Tasks</h3>
 <ol>
-  <li>[x]Build in logic to toggle the flashcard between the question side and the answer side</li>
+  <li>[checkbox:checked]Build in logic to toggle the flashcard between the question side and the answer side</li>
   <li>[x]Style the question and answer side of the card to better distinguish between the two sides</li>
   <li>[x]Further customize and style the card</li>
   <li>[x]Add selectable multiple choice answers beneath the card</li>
