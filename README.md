@@ -1,12 +1,12 @@
-###Lab 1
+### Lab 1
 ### FlashCard Application: Demo
-###Required Tasks
+### Required Tasks
 
   - [x] Add a view for the front side of the flashcard to display the question
   - [x] Add a view for the back side of the flashcard to display the answer
   - [x] Build in logic to show the answer side when the card is tapped
 
-###Optional Tasks
+### Optional Tasks
 
   - [x] Build in logic to toggle the flashcard between the question side and the answer side
   - [x] Style the question and answer side of the card to better distinguish between the two sides
