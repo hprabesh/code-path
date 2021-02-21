@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/flashcard_question"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="200dp"
+        android:textSize="40sp"
+        android:text="Who is the President of the United States?"
+        android:textAlignment="center"
+        android:background="@drawable/question_color_shape"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/option_1"
+        android:layout_below="@id/flashcard_question"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:text="Bill Clinton"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:background="@drawable/solid_color_shape"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/flashcard_answer"
+        android:layout_below="@id/option_1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:text="Barack Obama"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:background="@drawable/solid_color_shape"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/option_2"
+        android:layout_width="match_parent"
+        android:layout_below="@id/flashcard_answer"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:text="George W Bush"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:background="@drawable/solid_color_shape"
+        android:textColor="@color/white"
+        />
+
+
+    <ImageView
+        android:id="@+id/show_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:visibility="visible"
+        app:srcCompat="@drawable/outline_visibility_black_18dp"
+
+        />
+
+    <ImageView
+        android:id="@+id/hide_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/outline_visibility_off_black_18dp" />
+</RelativeLayout>
