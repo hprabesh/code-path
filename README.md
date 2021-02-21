@@ -3,7 +3,7 @@
 <h3>Required Tasks</h3>
 <ol>
   <li>
-    <input type="checkbox" disabled="" checked="">
+    <input type="checkbox" disabled/>
     Add a view for the front side of the flashcard to display the question</li>
   <li>Add a view for the back side of the flashcard to display the answer</li>
   <li>Build in logic to show the answer side when the card is tapped</li>
