@@ -1,4 +1,4 @@
-### Lab 1
+# Lab 1
 ### FlashCard Application: Demo
 ### Required Tasks
 
