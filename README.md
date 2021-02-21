@@ -1,5 +1,5 @@
 # Lab 1
-### FlashCard Application: Demo
+## FlashCard Application: Demo
 ### Required Tasks
 
   - [x] Add a view for the front side of the flashcard to display the question
