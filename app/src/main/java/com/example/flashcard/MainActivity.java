@@ -14,27 +14,56 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         TextView question = findViewById(R.id.flashcard_question);
+
+        TextView answer = findViewById(R.id.flashcard_answer);
+
+        TextView option1 = findViewById(R.id.option_1);
+        TextView option2 = findViewById(R.id.option_2);
+        TextView option3 = findViewById(R.id.option_3);
+
         ImageView show = findViewById(R.id.show_hint);
         ImageView hide = findViewById(R.id.hide_hint);
 
-        TextView option1 = findViewById(R.id.option_1);
-        TextView answer = findViewById(R.id.flashcard_answer);
-        TextView option2 = findViewById(R.id.option_2);
+        final Boolean[] clickStatus = {Boolean.FALSE}; //for finding the status of OPTIONS
 
-        final Boolean[] clickStatus = {Boolean.FALSE};
+
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                question.setVisibility(View.INVISIBLE);
+                answer.setVisibility(View.VISIBLE);
+                // hide the options and show/hide icon when viewing the main answers
+                show.setVisibility(View.INVISIBLE);
+                hide.setVisibility(View.INVISIBLE);
+                option1.setVisibility(View.INVISIBLE);
+                option2.setVisibility(View.INVISIBLE);
+                option3.setVisibility(View.INVISIBLE);
+            }
+        }); //for toggling the question to view answer
+        answer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                question.setVisibility(View.VISIBLE);
+                answer.setVisibility(View.INVISIBLE);
+                // show the show/hide icon when going back to question
+                show.setVisibility(View.VISIBLE);
+                hide.setVisibility(View.INVISIBLE);
+            }
+        }); // for returning back to question
 
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (clickStatus[0] ==Boolean.FALSE){
                     option1.setBackgroundColor(Color.parseColor("#aa0000"));
-                    answer.setBackgroundColor(Color.parseColor("#00aa00"));
-                    option2.setBackgroundColor(Color.parseColor("#aa0000"));
+                    option2.setBackgroundColor(Color.parseColor("#00aa00"));
+//                    option3.setBackgroundColor(Color.parseColor("#aa0000"));
                 } else {
                     option1.setBackgroundColor(Color.parseColor("#FFA5A0"));
-                    answer.setBackgroundColor(Color.parseColor("#FFA5A0"));
                     option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
+//                    option3.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
                 clickStatus[0] = ! clickStatus[0];
             }
@@ -42,29 +71,30 @@ public class MainActivity extends AppCompatActivity {
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickStatus[0] ==Boolean.FALSE){
-                    option1.setBackgroundColor(Color.parseColor("#aa0000"));
-                    answer.setBackgroundColor(Color.parseColor("#00aa00"));
-                    option2.setBackgroundColor(Color.parseColor("#aa0000"));
+                if (clickStatus[0]== Boolean.FALSE){
+                    option2.setBackgroundColor(Color.parseColor("#00aa00"));
                 } else {
-                    option1.setBackgroundColor(Color.parseColor("#FFA5A0"));
-                    answer.setBackgroundColor(Color.parseColor("#FFA5A0"));
                     option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
                 clickStatus[0] = ! clickStatus[0];
             }
         });
-        answer.setOnClickListener(new View.OnClickListener() {
+        option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickStatus[0]== Boolean.FALSE){
-                    answer.setBackgroundColor(Color.parseColor("#00aa00"));
+                if (clickStatus[0] ==Boolean.FALSE){
+//                    option1.setBackgroundColor(Color.parseColor("#aa0000"));
+                    option2.setBackgroundColor(Color.parseColor("#00aa00"));
+                    option3.setBackgroundColor(Color.parseColor("#aa0000"));
                 } else {
-                    answer.setBackgroundColor(Color.parseColor("#FFA5A0"));
+//                    option1.setBackgroundColor(Color.parseColor("#FFA5A0"));
+                    option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
+                    option3.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
                 clickStatus[0] = ! clickStatus[0];
             }
         });
+
 
         show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 show.setVisibility(View.INVISIBLE);
                 option1.setVisibility(View.VISIBLE);
                 option2.setVisibility(View.VISIBLE);
-                answer.setVisibility(View.VISIBLE);
+                option3.setVisibility(View.VISIBLE);
             }
         });
         hide.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 hide.setVisibility(View.INVISIBLE);
                 option1.setVisibility(View.INVISIBLE);
                 option2.setVisibility(View.INVISIBLE);
-                answer.setVisibility(View.INVISIBLE);
+                option3.setVisibility(View.INVISIBLE);
             }
         });
     }
