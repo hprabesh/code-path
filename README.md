@@ -1,3 +1,16 @@
+# Lab 2
+## FlashCard Application: Demo
+### Required Tasks
+  - [x] Start by opening Android Studio and running your app to make sure everything still works as expected.
+  - [x] Add a ‘+’ button that takes the user to new ‘Add Card Screen’
+  - [x] Add a Cancel button to the 'Add Card Screen'
+  - [x] Add two fields to the 'Add Card Screen' that will allow the user to enter the Question and the Answer
+  - [x] Add a Save button that will dismiss 'Add Card Screen' and return to the Main Activity where the user can see the card they just created
+  - [x] Push your code to GitHub!
+
+<img src="Lab2.gif" alt="Lab 2 Demo" width = "400px"/>
+
+
 # Lab 1
 ## FlashCard Application: Demo
 ### Required Tasks

@@ -1,12 +1,13 @@
 package com.example.flashcard;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         TextView option1 = findViewById(R.id.option_1);
         TextView option2 = findViewById(R.id.option_2);
         TextView option3 = findViewById(R.id.option_3);
+
+        ImageView addTask = findViewById(R.id.addBtn);
 
         ImageView show = findViewById(R.id.show_hint);
         ImageView hide = findViewById(R.id.hide_hint);
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickStatus[0] ==Boolean.FALSE){
+                if (clickStatus[0] == Boolean.FALSE) {
                     option1.setBackgroundColor(Color.parseColor("#aa0000"));
                     option2.setBackgroundColor(Color.parseColor("#00aa00"));
 //                    option3.setBackgroundColor(Color.parseColor("#aa0000"));
@@ -65,24 +68,24 @@ public class MainActivity extends AppCompatActivity {
                     option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
 //                    option3.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
-                clickStatus[0] = ! clickStatus[0];
+                clickStatus[0] = !clickStatus[0];
             }
         });
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickStatus[0]== Boolean.FALSE){
+                if (clickStatus[0] == Boolean.FALSE) {
                     option2.setBackgroundColor(Color.parseColor("#00aa00"));
                 } else {
                     option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
-                clickStatus[0] = ! clickStatus[0];
+                clickStatus[0] = !clickStatus[0];
             }
         });
         option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickStatus[0] ==Boolean.FALSE){
+                if (clickStatus[0] == Boolean.FALSE) {
 //                    option1.setBackgroundColor(Color.parseColor("#aa0000"));
                     option2.setBackgroundColor(Color.parseColor("#00aa00"));
                     option3.setBackgroundColor(Color.parseColor("#aa0000"));
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     option2.setBackgroundColor(Color.parseColor("#FFA5A0"));
                     option3.setBackgroundColor(Color.parseColor("#FFA5A0"));
                 }
-                clickStatus[0] = ! clickStatus[0];
+                clickStatus[0] = !clickStatus[0];
             }
         });
 
@@ -116,5 +119,26 @@ public class MainActivity extends AppCompatActivity {
                 option3.setVisibility(View.INVISIBLE);
             }
         });
+
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                MainActivity.this.startActivityForResult(intent,100);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode==RESULT_OK) {
+            String questionReceived = data.getExtras().getString("string1");
+            String answerReceived = data.getExtras().getString("string2");
+
+            ((TextView) findViewById(R.id.flashcard_question)).setText(questionReceived);
+            ((TextView) findViewById(R.id.flashcard_answer)).setText(answerReceived);
+            ((TextView) findViewById(R.id.option_2)).setText(answerReceived);
+
+        }
     }
 }

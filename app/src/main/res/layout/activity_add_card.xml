@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_question">
+
+        <EditText
+            android:id="@+id/question"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text|textMultiLine"
+            android:hint="Enter the Question Here" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_answer"
+        android:layout_below="@+id/layout_question">
+
+        <EditText
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:inputType="text|textMultiLine"
+            android:hint="Enter the Answer Here"
+
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_answer">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:src="@drawable/save"
+            android:contentDescription="@string/save"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/save"
+            android:id="@+id/close"
+            android:src="@drawable/exit"
+            android:contentDescription="@string/close" />
+    </RelativeLayout>
+
+</RelativeLayout>
