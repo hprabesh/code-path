@@ -5,20 +5,35 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    FlashcardDatabase flashcardDatabase;
+    List<Flashcard> allFlashCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+
+        allFlashCards = flashcardDatabase.getAllCards();
+
         setContentView(R.layout.activity_main);
 
         TextView question = findViewById(R.id.flashcard_question);
 
         TextView answer = findViewById(R.id.flashcard_answer);
+
+        ImageView next = findViewById(R.id.flashcard_next);
 
         TextView option1 = findViewById(R.id.option_1);
         TextView option2 = findViewById(R.id.option_2);
@@ -31,6 +46,30 @@ public class MainActivity extends AppCompatActivity {
 
         final Boolean[] clickStatus = {Boolean.FALSE}; //for finding the status of OPTIONS
 
+        if (!allFlashCards.isEmpty()){
+            final Integer[] pointer = {0};
+            Flashcard flashcard1= allFlashCards.get(pointer[0]);
+            question.setText(flashcard1.getQuestion());
+            answer.setText(flashcard1.getAnswer());
+            option2.setText(flashcard1.getAnswer());
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pointer[0]++;
+                    if (pointer[0]==allFlashCards.size()){
+                        Snackbar.make(findViewById(R.id.main_parent) ,"You've reached the end of the cards, going back to start.",Snackbar.LENGTH_SHORT).show();
+                        pointer[0]=0;
+                    }
+                    Flashcard flashcard1= allFlashCards.get(pointer[0]);
+                    question.setText(flashcard1.getQuestion());
+                    answer.setText(flashcard1.getAnswer());
+                    option2.setText(flashcard1.getAnswer());
+                }
+            });
+
+
+        }
 
         question.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.flashcard_question)).setText(questionReceived);
             ((TextView) findViewById(R.id.flashcard_answer)).setText(answerReceived);
             ((TextView) findViewById(R.id.option_2)).setText(answerReceived);
+
+            flashcardDatabase.insertCard(new Flashcard(questionReceived,answerReceived));
+
+            allFlashCards = flashcardDatabase.getAllCards();
 
         }
     }

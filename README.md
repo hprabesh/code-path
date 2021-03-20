@@ -1,3 +1,15 @@
+# Lab 3
+## FlashCard Application: Demo
+### Required Tasks
+  - [x] Start by opening Android Studio and running your app to make sure everything still works as expected.
+  - [x] Add the necessary dependencies to start setting up the app's database
+  - [x] Create the database related files
+  - [x] Allow user to create a card and still see their created card when the app is relaunched.
+  - [x] User should be able to create multiple cards and browse through their deck of created cards
+
+<img src="Lab3.gif" alt="Lab 3 Demo" width = "400px"/>
+
+
 # Lab 2
 ## FlashCard Application: Demo
 ### Required Tasks

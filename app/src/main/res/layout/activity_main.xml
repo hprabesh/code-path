@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_parent"
     tools:context=".MainActivity">
 
     <TextView
@@ -33,9 +34,19 @@
         android:background="@drawable/answer_color_shape"
         android:textColor="@color/white" />
 
+    <ImageView
+        android:id="@+id/flashcard_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/flashcard_question"
+        app:srcCompat="@drawable/next"
+        />
+
     <TextView
         android:id="@+id/option_1"
-        android:layout_below="@id/flashcard_question"
+        android:layout_below="@id/flashcard_next"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
@@ -108,8 +119,8 @@
             android:id="@+id/hide_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/outline_visibility_off_black_18dp" />
     </RelativeLayout>
