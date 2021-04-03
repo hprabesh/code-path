@@ -1,3 +1,16 @@
+# Lab 4
+## FlashCard Application: Demo
+### Required Tasks
+  - [x] Start by opening Android Studio and running your app to make sure everything still works as expected.
+  - [x] Add a launcher icon for your app!
+  - [x] Add a transition animation when the app goes from MainActivity to AddCardActivity
+  - [x] Add an animation for when the answer is revealed.
+  - [x] Add a sliding animation for when the user advances to the next card.
+  - [x] Add some last touches!
+
+<img src="Lab4.gif" alt="Lab 4 Demo" width = "400px"/>
+
+
 # Lab 3
 ## FlashCard Application: Demo
 ### Required Tasks

@@ -1,12 +1,17 @@
 package com.example.flashcard;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,15 +61,41 @@ public class MainActivity extends AppCompatActivity {
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    pointer[0]++;
-                    if (pointer[0]==allFlashCards.size()){
-                        Snackbar.make(findViewById(R.id.main_parent) ,"You've reached the end of the cards, going back to start.",Snackbar.LENGTH_SHORT).show();
-                        pointer[0]=0;
-                    }
-                    Flashcard flashcard1= allFlashCards.get(pointer[0]);
-                    question.setText(flashcard1.getQuestion());
-                    answer.setText(flashcard1.getAnswer());
-                    option2.setText(flashcard1.getAnswer());
+                    final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                    final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+                    question.startAnimation(leftOutAnim);
+
+                    leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            question.startAnimation(rightInAnim);
+
+                            pointer[0]++;
+                            if (pointer[0]==allFlashCards.size()){
+                                Snackbar.make(findViewById(R.id.main_parent) ,"You've reached the end of the cards, going back to start.",Snackbar.LENGTH_SHORT).show();
+                                pointer[0]=0;
+                            }
+                            Flashcard flashcard1= allFlashCards.get(pointer[0]);
+                            question.setText(flashcard1.getQuestion());
+                            answer.setText(flashcard1.getAnswer());
+                            option2.setText(flashcard1.getAnswer());
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+
+
+
+
                 }
             });
 
@@ -74,8 +105,23 @@ public class MainActivity extends AppCompatActivity {
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // get the center for the clipping circle
+                int cx = answer.getWidth() / 2;
+                int cy = answer.getHeight() / 2;
+
+// get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+// create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(answer, cx, cy, 0f, finalRadius);
+
+// hide the question and show the answer to prepare for playing the animation!
                 question.setVisibility(View.INVISIBLE);
                 answer.setVisibility(View.VISIBLE);
+
+                anim.setDuration(300);
+                anim.start();
                 // hide the options and show/hide icon when viewing the main answers
                 show.setVisibility(View.INVISIBLE);
                 hide.setVisibility(View.INVISIBLE);
@@ -87,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         answer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 question.setVisibility(View.VISIBLE);
                 answer.setVisibility(View.INVISIBLE);
                 // show the show/hide icon when going back to question
@@ -164,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,100);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+
             }
         });
     }

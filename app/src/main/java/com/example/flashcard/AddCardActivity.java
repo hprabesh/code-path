@@ -38,6 +38,7 @@ public class AddCardActivity extends AppCompatActivity {
                 data.putExtra("string2","Cancelled");
                 setResult(RESULT_CANCELED, data);
                 finish();
+
             }
         });
     }
